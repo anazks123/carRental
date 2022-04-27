@@ -1,0 +1,23 @@
+<div class="container">
+    <table class="table">
+  <thead>
+    <tr>
+         <th scope="col">User Mail</th>
+      <th scope="col">Message</th>
+     
+      
+    </tr>
+  </thead>
+  <tbody>
+      {{#each messages}}
+    <tr>
+      <td>{{this.userid}}</td>
+      <td>{{this.message}}</td>
+      
+      
+     
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+</div>

@@ -1,0 +1,15 @@
+<body style="background-image: url(https://images.pexels.com/photos/7130537/pexels-photo-7130537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); background-repeat: no-repeat; background-size: cover;">
+<div class="container" >
+    <div class="row" style="margin-left: 220px; margin-top:10px;">
+         {{#each result}}
+        <div class="card mb-3" style="width: 75%;">
+  <img src="/images/addpost/{{this.image}}" class="card-img-top" style="height: 300px;" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{this.name}}</h5>
+    <p class="card-text">{{this.description}}</p>
+  </div>
+</div>
+ {{/each}}
+    </div>
+</div>
+</body>

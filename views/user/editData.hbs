@@ -1,0 +1,69 @@
+ <nav class="navbar navbar-expand-lg navbar-light bg-success">
+  <div class="container-fluid">
+  
+    <div class="dropdown">
+ 
+
+</div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/users/" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" style="color: white;" href="/users/myAccount/{{user.id}}">Accounts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/myBookings/{{user.email}}" style="color: white;">My Bookings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/ublog" style="color: white;">Blog</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <a class="btn btn-success dropdown-toggle" href="/users" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        {{user.username}}
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" class="btn btn-primary" href="/users/logout" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Logout</a></li>
+  </ul>
+      </form>
+    </div>
+  </div>
+</nav>
+ 
+ 
+ <body style="background-image: url(https://images.pexels.com/photos/571169/pexels-photo-571169.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); background-repeat: no-repeat; background-size: cover;">
+
+ <div>
+        <h2 class="heading" style="text-align: center;margin-top:10px">UPDATE YOUR INFO</h2>
+    </div>
+<div class="container">
+    <form action="/users/update" method="POST">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <input type="email" name="email" value="{{data.email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div id="emailHelp"  class="form-text">We'll never share your email with anyone else.</div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Username</label>
+    <input type="text"name="username" value="{{data.username}}" class="form-control" id="exampleInputPassword1">
+  </div>
+   <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Mobile</label>
+    <input type="number" name="mobile" value="{{data.mobile}}" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Password</label>
+    <input type="text" name="password" value="{{data.password}}" class="form-control" id="exampleInputPassword1">
+  </div>
+  <div class="mb-3">
+ 
+    <input type="hidden" value="{{data.id}}" name="id" class="form-control" id="exampleInputPassword1">
+  </div>
+  
+  <button type="submit" class="btn btn-success">Update</button>
+</form>
+</div>
+</body>

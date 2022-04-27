@@ -1,0 +1,11 @@
+{{>userHeader}}
+{{>ubanner}}
+<div class="container" style="margin-left:100px">
+  <form action="/users/message" method="post">
+  <div class="mb-3">
+  <textarea name="msg" placeholder="please type your needs" id="" cols="30" rows="10"></textarea>
+    <input type="hidden" name="mail" value="{{mail}}">
+  </div>
+  <button type="submit" class="btn btn-outline-primary">Ask?</button>
+</form>
+</div>

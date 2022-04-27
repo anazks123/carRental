@@ -1,0 +1,123 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-success">
+  <div class="container-fluid">
+  
+    <div class="dropdown">
+ 
+
+</div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/users/" style="color: white;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" style="color: white;" href="/users/myAccount/{{user.id}}">Accounts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/myBookings/{{user.email}}" style="color: white;">My Bookings</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/users/ublog" style="color: white;">Blog</a>
+        </li>
+        
+        
+       
+      </ul>
+      <form class="d-flex">
+        <a class="btn btn-success dropdown-toggle" href="/users" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        {{user.username}}
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><a class="dropdown-item" class="btn btn-primary" href="/users/logout" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Logout</a></li>
+
+    
+    
+  </ul>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+<body style="background-image: url(https://images.pexels.com/photos/235985/pexels-photo-235985.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940); background-repeat: no-repeat; background-size: cover;">
+  <div class="container">
+    <form action="/users/booking" method="post">
+        <h3 style="text-align:center; font-size: 20px; font-weight: bold;" >Customer Details</h3>
+
+    <input type="text" name="username" class="inputType" value="{{user.username}}" readonly>
+    <input type="text" name="usermobile" class="inputType" value="{{user.mobile}}" readonly>
+    <input type="text" name="useremail" class="inputType" value="{{user.email}}" readonly>
+        <h3 style="text-align:center; font-size: 20px; font-weight: bold;" >Shop Name</h3>
+
+<input type="text" name="shopname" class="inputType" value="{{machanics.ShopName}}" readonly>
+
+    <h3 style="text-align:center; font-size: 20px; font-weight: bold;">Mail Id</h3>
+<input type="text"  name="email" class="inputType" value="{{machanics.email}}" readonly>
+
+    <h3 style="text-align:center; font-size: 20px; font-weight: bold;">Mobile</h3>
+<input type="text"  name="mobile" class="inputType" value="{{machanics.mobile}}" readonly>
+
+    <h3 style="text-align:center; font-size: 20px; font-weight: bold;">City</h3>
+<input type="text"  name="city" class="inputType" value="{{machanics.city}}" readonly>
+
+    <p style="text-align:center"></p>
+<input type="hidden"  name="lat" id="lat" class="inputType"  readonly>
+
+    <p style="text-align:center"></p>
+<input type="hidden" name="longt" id="long" class="inputType"  readonly>
+<div class="row">
+        <div class="col sm-4" style="text-align: center;">
+          <a href="/users/" class="btn btn-danger">Cancel</a>
+          <input class="btn btn-success" type="submit" value="Book"> 
+          </div>
+    </div>
+</form>
+</div>
+  </div>
+</div>
+<script>
+      const button = document.getElementById("gio");
+button.addEventListener("click", ()=>{
+    if(navigator.geolocation){
+        button.innerText = "Allow gmap to detect location";
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    }else{
+        button.innerText = "Your browser not support";
+    }
+});
+function onSuccess(position){
+      var locationData = document.getElementById('showdata');
+    locationData.innerText = "Detecting your location...";
+    let {latitude, longitude} = position.coords;
+    console.log(latitude);
+   document.getElementById("lat").value =latitude ;
+     document.getElementById("long").value =longitude ;
+    console.log(longitude);
+    console.log("----------------this is position")
+    //8bb9d1ee2d9743e29d3f1216c002b2f4
+    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=8bb9d1ee2d9743e29d3f1216c002b2f4`)
+    .then(response => response.json()).then(response =>{
+        let allDetails = response.results[0].components;
+        console.table(allDetails);
+        let {suburb, postcode, city} = allDetails;
+      
+        locationData.innerText = `${suburb} ${postcode}, ${city}`;
+    }).catch(()=>{
+        button.innerText = "Something went wrong";
+    });
+}
+function onError(error){
+    if(error.code == 1){
+        button.innerText = "You denied the request";
+    }else if(error.code == 2){
+        button.innerText = "Location is unavailable";
+    }else{
+        button.innerText = "Something went wrong";
+    }
+    button.setAttribute("disabled", "true");
+}
+</script>
+
+</body>
