@@ -3,17 +3,16 @@
     {{#each result}}
     <div class="boxs">
         <div class="card bg-dark text-white">
-  <img style="height: 360px;" class="card-img" src="https://is1-3.housingcdn.com/01c16c28/e11cc5c1d390acb60efbe84d0c382b74/v0/fs/3_rk_-for-rent-sector_5_noida-Noida-double_sharing_room.jpg" alt="Card image">
+  <img style="height: 360px;" class="card-img" src="/images/menu/{{this.noFoodA}}" alt="Card image">
   <div class="card-img-overlay">
     <h5 class="card-title p-4" ></h5>
     <div class="container" style="align-items: center;">
-            <p class="card-text"style="color: rgb(7, 8, 8);"><b>{{this.f2}}</b></p>
-                <p class="card-text"style="color: rgb(7, 8, 8);"><b>{{this.f3}}</b></p>
-                  <p class="card-text"style="color: rgb(7, 8, 8);">Tota Amount With Food</p>
-                   <p class="card-text"style="color: rgb(7, 8, 8);"><b>{{this.tamount}} Rs</b></p>
-                    <p class="card-text"style="color: white">Tota Amount WithOut Food</p>
-                      <p class="card-text"style="color: rgb(7, 8, 8);"><b>{{this.noFoodA}} Rs</b></p>
-                      <a class="btn btn-outline-info" href="{{this.f1}}">View Location</a>
+       <h3><b>Mddel</b></h3>
+            <p class="card-text"style="color: rgb(7, 8, 8);"><b><i><h1 style="color: rgb(132, 210, 23);"> {{this.f2}}</h1></i>  </b></p>
+                   <h3><b>PerDay</b></h3>
+                <p class="card-text"style="color: rgb(7, 8, 8);"><b><i><h1 style="color: rgb(132, 210, 23);">{{this.f3}}</h1></i></b></p>  
+                    
+                      {{!-- <a class="btn btn-outline-info" href="{{this.f1}}">View Location</a> --}}
 
                       
     </div>
@@ -21,8 +20,4 @@
 </div>
     </div>
        {{/each}}
-       <div class="containter" style="margin-left: 350px;margin-top:50px">
-            <h1 ><b>Food Menu</b></h1>
-                          <img style="height: 400px;width:400px" src="/images/menu/{{menu}}" alt="">
-                      </div>
-</div>
+      

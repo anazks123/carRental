@@ -479,7 +479,7 @@ input {
         <div class="field-container">
             <label for="securitycode">Rs</label>
             <form action="/users/payDone" method="post">
-                    <input id="securitycode" name="rs" type="text" pattern="[0-9]*" inputmode="numeric">
+                    <input id="securitycode" name="rs" type="text" value="{{total}}" readonly pattern="[0-9]*" inputmode="numeric">
                     <input id="securitycode" value="{{id}}" name="id" type="hidden" pattern="[0-9]*" inputmode="numeric">
                         <input type="submit" class="btn btn-success">
                         <html lang="en">

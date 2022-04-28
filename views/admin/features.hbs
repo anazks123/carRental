@@ -1,11 +1,12 @@
 <body style="background-image: url(https://images.pexels.com/photos/7130537/pexels-photo-7130537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1); background-repeat: no-repeat; background-size: cover;">
 <div class="container" style="margin-top: 30px;">
-    <form action="/addfeaturs" method="post" enctype="multipart/form-data"> 
+   <div class="container3 p-4">
+      <form action="/addfeaturs" method="post" enctype="multipart/form-data"> 
 
-    <legend>Add Features</legend>
+    <legend>Add Car</legend>
     <div class="mb-3">
       <label for="disabledTextInput" class="form-label"></label>
-      <input type="text" name="f1" id="disabledTextInput" class="form-control" placeholder="share your location link ">
+      <input type="text" name="f1" id="disabledTextInput" class="form-control" placeholder="Name">
     </div>
     <div class="mb-3">
       <label for="disabledTextInput" class="form-label"></label>
@@ -20,17 +21,18 @@
              <div class="mb-3">
       <label for="disabledTextInput" class="form-label"></label>
       <input
-       type="file" name="image" id="disabledTextInput" class="form-control" placeholder="Amount withOut food">
+       type="file" name="image" id="disabledTextInput" class="form-control" placeholder="Milage">
     </div>
       <div class="mb-3">
              
       <label for="disabledTextInput" class="form-label"></label>
-      <input type="number" name="tamount" id="disabledTextInput" class="form-control" placeholder="Amount with food">
+      <input type="number" name="tamount" id="disabledTextInput" class="form-control" placeholder="Milage">
         </div>
         <div class="mb-3">
     
     <button type="submit" class="btn btn-outline-success">Add</button>
  
 </form>
+   </div>
 </div>
 </body>

@@ -13,7 +13,7 @@ router.get('/mechHome', function(req, res, next) {
   let user = req.session.user;
   var mail = req.session.user.email;
   console.log(mail)
-  con.query("select * from booking where email = ? and status = 'pending'",[mail],(err,result)=>{
+  con.query("select * from booking where shopname = ? and status = 'pending'",[mail],(err,result)=>{
     if(err){
       console.log(err)
     }else{
@@ -216,7 +216,7 @@ router.get('/serviceBook/:email',function(req,res){
   var email = req.params.email;
   //UPDATE `booking` SET `status` ='hai' WHERE `id` = '1';
  
-  con.query("select * from booking where email = ? ", [email],(err,result)=>{
+  con.query("select * from booking where shopname = ? ", [email],(err,result)=>{
     if(err){
       console.log(err)
     }else{
@@ -318,16 +318,28 @@ router.get('/addF',(req,res)=>{
   res.render('admin/features',{user})
 })
 router.post('/addfeaturs',(req,res)=>{
-  var data = req.body;
-  data.mail=req.session.user.email;
+var image=req.files.image;
+  var img_name = image.name;
+  var email=req.session.user.email;
   var sql= "insert into addfeatures set?"
-  con.query(sql,[data],(err,row)=>{
-    if(err){
-      console.log(err)
-    }else{
-      res.redirect('/mechHome')
-    }
-  })
+  req.body.noFoodA = img_name;
+  req.body.mail=email;
+  if(image.mimetype == 'image/jpeg'||image.mimetype=='image/png'){
+    image.mv("public/images/menu/"+ image.name,function(err){
+      if(err){
+        console.log(err)
+      }else{
+        con.query(sql,req.body,(err,result)=>{
+          if(err){
+            console.log(err)
+          }else{
+            console.log("success")
+            res.redirect('/mechHome')
+          }
+        })
+      }
+    })
+  }
 })
 router.post('/menu',(req,res)=>{
   if (!req.files) {

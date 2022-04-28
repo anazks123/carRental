@@ -13,15 +13,15 @@
     {{#each row}}
     <div class="col sm-3">
 <div class="card" style="width: 21rem;">
-  <img src="/images/profile/{{this.image}}" alt="https://qph.fs.quoracdn.net/main-qimg-2b21b9dd05c757fe30231fac65b504dd">
+  <img style="height: 210px;" src="/images/menu/{{this.noFoodA}}" alt="https://qph.fs.quoracdn.net/main-qimg-2b21b9dd05c757fe30231fac65b504dd">
   <div class="card-body">
-    <h5 class="card-title">{{this.ShopName}}</h5>
-    <p class="card-text">{{this.email}}</p>
-    <p class="card-text">{{this.mobile}}</p>
-    <p class="card-text">{{this.city}}</p>
+    <h5 class="card-title">{{this.mail}}</h5>
+    <p class="card-text">{{this.f1}}</p>
+    <p class="card-text">{{this.f2}}</p>
+    <p class="card-text">{{this.f3}}/Day</p>
     <a href="/users/booknow/{{this.id}} " class="btn btn-outline-success">Booknow</a>
-      <a href="/users/view/{{this.email}} " class="btn btn-outline-dark">View Details</a>
-      <a href="/users/contact/{{this.email}} " class="btn btn-outline-warning">Contact</a>
+      <a href="/users/view/{{this.id}}/{{this.mail}} " class="btn btn-outline-dark">View Details</a>
+      {{!-- <a href="/users/contact/{{this.email}} " class="btn btn-outline-warning">Contact</a> --}}
   </div>
 </div>
     </div>

@@ -7,7 +7,7 @@ var con=require('../config/config');
 var globalData;
 router.get('/', function(req, res, next) {
   let user = req.session.user;
-    con.query("select * from shop",(err,row)=>{
+    con.query("select * from addfeatures",(err,row)=>{
       if(err){
         console.log(err)
       }else{
@@ -27,10 +27,13 @@ router.get('/confirmBooking',(req,res)=>{
 })
 
 
-router.get('/payNow/:id',(req,res)=>{
+router.get('/payNow/:id/:days/:amount',(req,res)=>{
+  var days = req.params.days;
+  var amount = req.params.amount;
   var id = req.params.id;
   let user = req.session.user;
-   res.render('user/pay',{id,user,homePage:true});
+  var total = days * amount;
+   res.render('user/pay',{id,user,homePage:true,total});
   })
   router.post('/payDone',(req,res)=>{
     console.log(req.body)
@@ -190,7 +193,7 @@ router.get('/myBookings/:mail',function(req,res){
 router.get('/booknow/:id',function(req,res){
     console.log(req.params.id)
     var id = req.params.id;
-    con.query("select * from shop where id = ?",[id],(err,result)=>{
+    con.query("select * from addfeatures where id = ?",[id],(err,result)=>{
       if(err){
         console.log(err)
       }else{
@@ -214,10 +217,12 @@ router.post('/booking',(req,res)=>{
  console.log(dateTime)
  data.time = dateTime;
  console.log(data)
+ var booking = req.body.bdate;
+ console.log("booking",booking)
   var sql = "insert into booking set ?"
   con.query(sql,data,(err,result)=>{
     if(err){
-      console.log("error")
+      console.log(err)
     }else{
       console.log("bookking success")
       res.redirect('/users')
@@ -228,11 +233,12 @@ router.get('/logout',(req,res)=>{
   req.session.destroy()
   res.redirect('/')
 })
-router.get('/view/:mail',(req,res)=>{
+router.get('/view/:id/:mail',(req,res)=>{
   var email = req.params.mail;
+  var id  = req.params.id;
   console.log(email)
   //var sql = "Select * from addfeatures where mail = ?"
-  con.query("select * from addfeatures where mail = ?",[email],(err,result)=>{
+  con.query("select * from addfeatures where id = ?",[id],(err,result)=>{
     if(err){
       console.log(err)
     }else{
@@ -242,9 +248,9 @@ router.get('/view/:mail',(req,res)=>{
         if(err){
           console.log|(err)
         }else{
-          var menu= row[0].menu;
+
           var user = req.session.user;
-          res.render('user/viewDetail',{result,user,menu,homePage:true})
+          res.render('user/viewDetail',{result,user,homePage:true})
         }
       })
      
